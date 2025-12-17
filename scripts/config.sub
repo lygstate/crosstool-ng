@@ -442,11 +442,11 @@ case $1 in
 				basic_os=sysv
 				;;
 			mingw64)
-				basic_machine=x86_64-pc
-				basic_os=mingw64
+				basic_machine=x86_64-w64
+				basic_os=mingw32
 				;;
 			mingw32)
-				basic_machine=i686-pc
+				basic_machine=i686-w64
 				basic_os=mingw32
 				;;
 			mingw32ce)
