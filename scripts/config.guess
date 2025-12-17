@@ -926,7 +926,10 @@ EOF
 	GUESS=$UNAME_MACHINE-pc-cygwin
 	;;
     *:MINGW64*:*)
-	GUESS=$UNAME_MACHINE-pc-mingw64
+	GUESS=x86_64-w64-mingw32
+	;;
+    *:MINGW32*:*)
+	GUESS=i686-w64-mingw32
 	;;
     *:MINGW*:*)
 	GUESS=$UNAME_MACHINE-pc-mingw32
