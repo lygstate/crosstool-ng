@@ -38,6 +38,9 @@ do_libtool_backend()
     done
 
     CT_DoLog EXTRA "Configuring libtool"
+
+    CT_SRC_DIR=$(realpath --relative-to="$PWD" "$CT_SRC_DIR")
+
     CT_DoExecLog CFG \
                      ${CONFIG_SHELL} \
                      "${CT_SRC_DIR}/libtool/configure" \

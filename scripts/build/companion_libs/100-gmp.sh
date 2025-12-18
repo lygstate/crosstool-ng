@@ -124,6 +124,8 @@ do_gmp_backend() {
 
     cflags+=" ${CT_GMP_EXTRA_CFLAGS}"
 
+    CT_SRC_DIR=$(realpath --relative-to="$PWD" "$CT_SRC_DIR")
+
     # GMP's configure script doesn't respect the host parameter
     # when not cross-compiling, ie when build == host so set
     # CC_FOR_BUILD and CPP_FOR_BUILD.

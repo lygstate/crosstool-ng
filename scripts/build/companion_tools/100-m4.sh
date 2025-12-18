@@ -63,6 +63,8 @@ do_m4_backend()
             ;;
     esac
 
+    CT_SRC_DIR=$(realpath --relative-to="$PWD" "$CT_SRC_DIR")
+
     CT_DoLog EXTRA "Configuring m4"
     CT_DoExecLog CFG \
                      CFLAGS="${cflags}" \

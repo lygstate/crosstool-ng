@@ -64,6 +64,8 @@ do_make_backend()
         extra_config+=( --without-guile )
     fi
 
+    CT_SRC_DIR=$(realpath --relative-to="$PWD" "$CT_SRC_DIR")
+
     CT_DoLog EXTRA "Configuring make"
     CT_DoExecLog CFG \
                      CFLAGS="${cflags}" \

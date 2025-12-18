@@ -37,6 +37,8 @@ do_automake_backend()
         eval "${arg// /\\ }"
     done
 
+    CT_SRC_DIR=$(realpath --relative-to="$PWD" "$CT_SRC_DIR")
+
     CT_DoLog EXTRA "Configuring automake"
     CT_DoExecLog CFG \
                      ${CONFIG_SHELL} \

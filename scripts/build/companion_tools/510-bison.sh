@@ -48,6 +48,8 @@ do_bison_backend()
         eval "${arg// /\\ }"
     done
 
+    CT_SRC_DIR=$(realpath --relative-to="$PWD" "$CT_SRC_DIR")
+
     CT_DoLog EXTRA "Configuring bison"
     CT_DoExecLog CFG \
                      CFLAGS="${cflags}" \
