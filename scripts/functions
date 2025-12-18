@@ -2341,7 +2341,7 @@ CT_DoExtractPatch()
                 if [ -n "${d}" -a -d "${d}" ]; then
                     for p in "${d}"/*.patch; do
                         if [ -f "${p}" ]; then
-                            CT_DoExecLog ALL ${patch} --no-backup-if-mismatch -g0 -F1 -p1 -f -i "${p}"
+                            CT_DoExecLog ALL ${patch} --no-backup-if-mismatch --binary -g0 -F1 -p1 -f -i "${p}"
                         fi
                     done
                 fi
