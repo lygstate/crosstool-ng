@@ -640,6 +640,8 @@ do_gcc_core_backend() {
         cxxflags_for_target="${cxxflags_for_target} ${extra_cxxflags_for_target}"
     fi
 
+    CT_SRC_DIR=$(realpath --relative-to="$PWD" "$CT_SRC_DIR")
+
     # Use --with-local-prefix so older gccs don't look in /usr/local (http://gcc.gnu.org/PR10532).
     # Pass only user-specified CFLAGS/LDFLAGS in CFLAGS_FOR_TARGET/LDFLAGS_FOR_TARGET: during
     # the build of, for example, libatomic, GCC tried to compile multiple variants for runtime

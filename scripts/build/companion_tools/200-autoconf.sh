@@ -37,6 +37,8 @@ do_autoconf_backend()
         eval "${arg// /\\ }"
     done
 
+    CT_SRC_DIR=$(realpath --relative-to="$PWD" "$CT_SRC_DIR")
+
     # Ensure configure gets run using the CONFIG_SHELL as configure seems to
     # have trouble when CONFIG_SHELL is set and /bin/sh isn't bash
     # For reference see:

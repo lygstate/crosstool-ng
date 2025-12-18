@@ -48,6 +48,8 @@ do_dtc_backend()
         eval "${arg// /\\ }"
     done
 
+    prefix=$(realpath --relative-to="$PWD" "$prefix")
+
     # Override PKG_CONFIG: if pkg-config is not installed, DTC's makefile
     # misinterprets the error code and tries to enable YAML support while
     # not linking against libyaml. NO_YAML=1 is sufficient to make the build
