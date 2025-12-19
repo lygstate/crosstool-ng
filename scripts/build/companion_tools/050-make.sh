@@ -8,6 +8,25 @@ do_companion_tools_make_get()
 do_companion_tools_make_extract()
 {
     CT_ExtractPatch MAKE
+    _prog_name=mingw32-make
+    if [ "${MSYSTEM}" = "MINGW64" ]; then
+        if [ -f "${CT_SRC_DIR}/make/Makefile.am.orig" ]; then
+            CT_DoLog DEBUG "Make already renamed"
+        else
+            CT_Pushd "${CT_SRC_DIR}/make"
+            CT_DoLog EXTRA "Changing the program name from 'make' to '${_prog_name}' in Makefile.am. at ${CT_SRC_DIR}/make"
+            test -f Makefile.am.orig || mv Makefile.am Makefile.am.orig
+            local _prog_name_am=${_prog_name//[^a-zA-Z0-9@]/_}
+            sed -e "/bin_PROGRAMS/ { s:\bmake\b:${_prog_name}:g };
+                    s:\bmake_\(SOURCES\|LDADD\|LDFLAGS\)\b:${_prog_name_am}_\1:g ;
+                    s:\bEXTRA_make_\([A-Z]\+\):EXTRA_${_prog_name_am}_\1:g ;" \
+                    Makefile.am.orig > Makefile.am
+            # log the changes made to Makefile.am by sed
+            diff -u Makefile.am.orig Makefile.am > Makefile.am.diff || true
+            CT_DoExecLog ALL autoreconf -vfi
+            CT_Popd
+        fi
+    fi
 }
 
 do_companion_tools_make_for_build()
