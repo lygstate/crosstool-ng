@@ -206,7 +206,7 @@ do_cc_core() {
     core_opts+=( "mode=static" )
     core_opts+=( "build_libgcc=yes" )
 
-    CT_DoStep INFO "Installing core C gcc compiler"
+    CT_DoStep INFO "Installing core C gcc compiler with jobs flags:${CT_JOBSFLAGS}"
     CT_mkdir_pushd "${CT_BUILD_DIR}/build-cc-gcc-core"
 
     do_gcc_core_backend "${core_opts[@]}"
@@ -715,7 +715,7 @@ do_gcc_core_backend() {
         libgcc_rule="libgcc.mvars"
         core_targets=( gcc target-libgcc )
 
-        CT_DoExecLog ALL make ${CT_JOBSFLAGS} -C gcc ${libgcc_rule}
+        CT_DoExecLog ALL make ${CT_JOBSFLAGS} -C gcc ${libgcc_rule} WINDRES=${CT_BUILD}-windres
 
         sed -r -i -e 's@-lc@@g' gcc/${libgcc_rule}
     else # build_libgcc
@@ -754,7 +754,7 @@ do_gcc_core_backend() {
          -a "${CT_CC_LANG_ADA}"  = "y"    \
        ]; then
         CT_DoLog EXTRA "Building gnattools for baremetal"
-        CT_DoExecLog ALL make -C gcc ${CT_JOBSFLAGS} cross-gnattools
+        CT_DoExecLog ALL make -C gcc ${CT_JOBSFLAGS} cross-gnattools WINDRES=${CT_BUILD}-windres
     fi
 
     # Do not pass ${CT_JOBSFLAGS} here: recent GCC builds have been failing
