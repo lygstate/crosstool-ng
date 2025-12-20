@@ -31,6 +31,7 @@ do_libiconv_for_build() {
     libiconv_opts+=( "prefix=${CT_BUILDTOOLS_PREFIX_DIR}" )
     libiconv_opts+=( "cflags=${CT_CFLAGS_FOR_BUILD}" )
     libiconv_opts+=( "ldflags=${CT_LDFLAGS_FOR_BUILD}" )
+    libiconv_opts+=( "shared=y" )
     do_libiconv_backend "${libiconv_opts[@]}"
 
     CT_Popd
@@ -48,6 +49,7 @@ do_libiconv_for_host() {
     libiconv_opts+=( "prefix=${CT_HOST_COMPLIBS_DIR}" )
     libiconv_opts+=( "cflags=${CT_CFLAGS_FOR_HOST}" )
     libiconv_opts+=( "ldflags=${CT_LDFLAGS_FOR_HOST}" )
+    libiconv_opts+=( "shared=y" )
     do_libiconv_backend "${libiconv_opts[@]}"
 
     CT_Popd

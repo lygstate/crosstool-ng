@@ -31,6 +31,7 @@ do_gettext_for_build() {
     gettext_opts+=( "prefix=${CT_BUILDTOOLS_PREFIX_DIR}" )
     gettext_opts+=( "cflags=${CT_CFLAGS_FOR_BUILD}" )
     gettext_opts+=( "ldflags=${CT_LDFLAGS_FOR_BUILD}" )
+    gettext_opts+=( "shared=y" )
     do_gettext_backend "${gettext_opts[@]}"
 
     CT_Popd
@@ -48,6 +49,7 @@ do_gettext_for_host() {
     gettext_opts+=( "prefix=${CT_HOST_COMPLIBS_DIR}" )
     gettext_opts+=( "cflags=${CT_CFLAGS_FOR_HOST}" )
     gettext_opts+=( "ldflags=${CT_LDFLAGS_FOR_HOST}" )
+    gettext_opts+=( "shared=y" )
     do_gettext_backend "${gettext_opts[@]}"
 
     CT_Popd

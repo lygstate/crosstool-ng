@@ -29,6 +29,7 @@ do_expat_for_host() {
     expat_opts+=( "prefix=${CT_HOST_COMPLIBS_DIR}" )
     expat_opts+=( "cflags=${CT_CFLAGS_FOR_HOST}" )
     expat_opts+=( "ldflags=${CT_LDFLAGS_FOR_HOST}" )
+    expat_opts+=( "shared=y" )
 
     do_expat_backend "${expat_opts[@]}"
 
@@ -71,6 +72,7 @@ fi
 #   host          : machine to run on         : tuple     : (none)
 #   prefix        : prefix to install into    : dir       : (none)
 #   destdir       : install destination       : dir       : (none)
+#   shared        : build shared lib          : bool      : n
 do_expat_backend() {
     local host
     local prefix
