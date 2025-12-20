@@ -286,7 +286,9 @@ do_gdb_backend()
         *)      extra_config+=("--enable-threads");;
     esac
 
-    if [ "${CT_TOOLCHAIN_ENABLE_NLS}" != "y" ]; then
+    if [ "${CT_TOOLCHAIN_ENABLE_NLS}" = "y" ]; then
+        extra_config+=("--enable-nls")
+    else
         extra_config+=("--disable-nls")
     fi
 
