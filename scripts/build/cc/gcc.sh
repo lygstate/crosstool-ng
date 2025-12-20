@@ -203,7 +203,6 @@ do_cc_core() {
     core_opts+=( "ldflags=${CT_LDFLAGS_FOR_BUILD}" )
     core_opts+=( "lang_list=c" )
     core_opts+=( "build_step=core" )
-    core_opts+=( "mode=static" )
     core_opts+=( "build_libgcc=yes" )
 
     CT_DoStep INFO "Installing core C gcc compiler with jobs flags:${CT_JOBSFLAGS}"
@@ -536,7 +535,8 @@ do_gcc_core_backend() {
     esac
 
     if [ "${CT_TOOLCHAIN_ENABLE_NLS}" = "y" ]; then
-        extra_config+=("--with-libintl-prefix=${complibs}")
+        extra_config+=("--enable-nls")
+        extra_config+=("--disable-win32-utf8-manifest")
     else
         extra_config+=("--disable-nls")
     fi
@@ -1239,7 +1239,8 @@ do_gcc_backend() {
     esac
 
     if [ "${CT_TOOLCHAIN_ENABLE_NLS}" = "y" ]; then
-        extra_config+=("--with-libintl-prefix=${complibs}")
+        extra_config+=("--enable-nls")
+        extra_config+=("--disable-win32-utf8-manifest")
     else
         extra_config+=("--disable-nls")
     fi
