@@ -136,6 +136,12 @@ cat "${paths_sh_location}" |while read trash line; do
     tool="${line%%=*}"
     # Suppress extra quoting
     eval path=${line#*=}
+    if [ "${MSYSTEM}" = "MINGW64" ]; then
+        # For mingw64, python link to '/mingw64/bin/python' instead
+        if [ "${tool}" = "python" ]; then
+            path="/mingw64/bin/python"
+        fi
+    fi
     if [ ! -r "${CT_LIB_DIR}/scripts/override/$tool" ]; then
          if [ -n "${path}" ]; then
              CT_DoExecLog ALL rm -f "${CT_TOOLS_OVERRIDE_DIR}/bin/${tool}"

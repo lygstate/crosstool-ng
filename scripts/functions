@@ -2509,6 +2509,11 @@ else
 fi
 . "${paths_sh_location}"
 
+if [ "${MSYSTEM}" = "MINGW64" ]; then
+    # For mingw64, python link to '/mingw64/bin/python' instead
+    export python="/mingw64/bin/python"
+fi
+
 CT_InstallCopyingInformation()
 {
     local licfile
