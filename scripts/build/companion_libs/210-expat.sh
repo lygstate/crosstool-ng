@@ -29,6 +29,7 @@ do_expat_for_host() {
     expat_opts+=( "prefix=${CT_HOST_COMPLIBS_DIR}" )
     expat_opts+=( "cflags=${CT_CFLAGS_FOR_HOST}" )
     expat_opts+=( "ldflags=${CT_LDFLAGS_FOR_HOST}" )
+    expat_opts+=( "shared=y" )
 
     do_expat_backend "${expat_opts[@]}"
 
