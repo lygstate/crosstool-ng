@@ -33,6 +33,7 @@ do_ncurses_for_build() {
                        destdir="${CT_BUILDTOOLS_PREFIX_DIR}" \
                        cflags="${CT_CFLAGS_FOR_BUILD}" \
                        ldflags="${CT_LDFLAGS_FOR_BUILD}" \
+                       shared=y \
                        install_target=install.progs \
                        "${opts[@]}"
     CT_Popd
@@ -63,6 +64,7 @@ do_ncurses_for_host() {
                        prefix="${CT_HOST_COMPLIBS_DIR}" \
                        cflags="${CT_CFLAGS_FOR_HOST}" \
                        ldflags="${CT_LDFLAGS_FOR_HOST}" \
+                       shared=y \
                        "${opts[@]}"
     CT_Popd
     CT_EndStep

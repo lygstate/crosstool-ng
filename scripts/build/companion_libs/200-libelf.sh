@@ -35,6 +35,7 @@ do_libelf_for_build() {
     libelf_opts+=( "prefix=${CT_BUILDTOOLS_PREFIX_DIR}" )
     libelf_opts+=( "cflags=${CT_CFLAGS_FOR_BUILD}" )
     libelf_opts+=( "ldflags=${CT_LDFLAGS_FOR_BUILD}" )
+    libelf_opts+=( "shared=y" )
     do_libelf_backend "${libelf_opts[@]}"
 
     CT_Popd
@@ -52,6 +53,7 @@ do_libelf_for_host() {
     libelf_opts+=( "prefix=${CT_HOST_COMPLIBS_DIR}" )
     libelf_opts+=( "cflags=${CT_CFLAGS_FOR_HOST}" )
     libelf_opts+=( "ldflags=${CT_LDFLAGS_FOR_HOST}" )
+    libelf_opts+=( "shared=y" )
     do_libelf_backend "${libelf_opts[@]}"
 
     CT_Popd
