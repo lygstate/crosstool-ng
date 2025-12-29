@@ -2320,18 +2320,20 @@ CT_DoExtractPatch()
 
             bundled_patch_dir="${CT_LIB_DIR}/packages/${pkg_dir}"
             bundled_exp_patch_dir="${CT_LIB_DIR}/packages/${pkg_dir}/experimental"
+            mingw_patch_dir="${CT_LIB_DIR}/packages/${pkg_dir}/mingw"
+            msys2_patch_dir="${CT_LIB_DIR}/packages/${pkg_dir}/msys2"
             bundled_common_patch_dir="${CT_LIB_DIR}/packages/${pkg_name}"
             local_patch_dir="${CT_LOCAL_PATCH_DIR}/${pkg_dir}"
             local_common_patch_dir="${CT_LOCAL_PATCH_DIR}/${pkg_name}"
 
             case "${patch_order}" in
-                bundled)                    patch_dirs=("${bundled_patch_dir}" "${bundled_common_patch_dir}");;
+                bundled)                    patch_dirs=("${bundled_patch_dir}" "${mingw_patch_dir}" "${msys2_patch_dir}" "${bundled_common_patch_dir}");;
                 local)                      patch_dirs=("${local_patch_dir}" "${local_common_patch_dir}");;
-                bundled,local)              patch_dirs=("${bundled_patch_dir}" "${bundled_common_patch_dir}" "${local_patch_dir}" "${local_common_patch_dir}");;
-                local,bundled)              patch_dirs=("${local_patch_dir}" "${local_common_patch_dir}" "${bundled_patch_dir}" "${bundled_common_patch_dir}");;
-                bundled,bundled_exp)        patch_dirs=("${bundled_patch_dir}" "${bundled_common_patch_dir}" "${bundled_exp_patch_dir}");;
-                bundled,bundled_exp,local)  patch_dirs=("${bundled_patch_dir}" "${bundled_common_patch_dir}" "${bundled_exp_patch_dir}" "${local_patch_dir}" "${local_common_patch_dir}");;
-                local,bundled,bundled_exp)  patch_dirs=("${local_patch_dir}" "${local_common_patch_dir}" "${bundled_patch_dir}" "${bundled_common_patch_dir}" "${bundled_exp_patch_dir}");;
+                bundled,local)              patch_dirs=("${bundled_patch_dir}" "${mingw_patch_dir}" "${msys2_patch_dir}" "${bundled_common_patch_dir}" "${local_patch_dir}" "${local_common_patch_dir}");;
+                local,bundled)              patch_dirs=("${local_patch_dir}" "${local_common_patch_dir}" "${bundled_patch_dir}" "${mingw_patch_dir}" "${msys2_patch_dir}" "${bundled_common_patch_dir}");;
+                bundled,bundled_exp)        patch_dirs=("${bundled_patch_dir}" "${mingw_patch_dir}" "${msys2_patch_dir}" "${bundled_common_patch_dir}" "${bundled_exp_patch_dir}");;
+                bundled,bundled_exp,local)  patch_dirs=("${bundled_patch_dir}" "${mingw_patch_dir}" "${msys2_patch_dir}" "${bundled_common_patch_dir}" "${bundled_exp_patch_dir}" "${local_patch_dir}" "${local_common_patch_dir}");;
+                local,bundled,bundled_exp)  patch_dirs=("${local_patch_dir}" "${local_common_patch_dir}" "${bundled_patch_dir}" "${mingw_patch_dir}" "${msys2_patch_dir}" "${bundled_common_patch_dir}" "${bundled_exp_patch_dir}");;
                 none)                       patch_dirs=;;
             esac
 
