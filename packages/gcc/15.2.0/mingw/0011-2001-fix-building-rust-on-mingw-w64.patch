@@ -1,0 +1,27 @@
+From 63320b06245e88e70a5a7af64bd064654249ca4e Mon Sep 17 00:00:00 2001
+From: Yonggang Luo <luoyonggang@gmail.com>
+Date: Mon, 29 Dec 2025 22:12:53 +0800
+Subject: [PATCH 11/12] 2001 fix building rust on mingw-w64
+
+---
+ configure.ac | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 730db3c1402..34fa22bf415 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -2188,10 +2188,6 @@ AC_SEARCH_LIBS([pthread_create], [pthread])
+ CRAB1_LIBS="$LIBS"
+ LIBS="$save_LIBS"
+ 
+-if test "$ac_cv_search_dlopen" = no; then
+-    missing_rust_dynlibs="libdl"
+-fi
+-
+ if test "$ac_cv_search_pthread_create" = no; then
+     missing_rust_dynlibs="$missing_rust_dynlibs, libpthread"
+ fi
+-- 
+2.51.0.windows.1
+

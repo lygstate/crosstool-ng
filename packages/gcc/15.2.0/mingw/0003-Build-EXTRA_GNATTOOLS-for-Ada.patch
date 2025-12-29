@@ -1,0 +1,34 @@
+From f99fcae06776cdd3f3dd77b9864b487041c7b110 Mon Sep 17 00:00:00 2001
+From: Alexey Pavlov <alexey.pawlow@gmail.com>
+Date: Wed, 5 Aug 2015 23:36:17 +0100
+Subject: [PATCH 03/12] Build EXTRA_GNATTOOLS for Ada
+
+---
+ gnattools/Makefile.in | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnattools/Makefile.in b/gnattools/Makefile.in
+index 996e600c196..2c33bf12782 100644
+--- a/gnattools/Makefile.in
++++ b/gnattools/Makefile.in
+@@ -204,7 +204,7 @@ gnattools-native: $(GCC_DIR)/stamp-tools $(GCC_DIR)/stamp-gnatlib-rts
+ 	  ../../gnatmake$(exeext) ../../gnatlink$(exeext)
+ 	# gnattools2
+ 	$(MAKE) -C $(GCC_DIR)/ada/tools -f ../Makefile \
+-	  $(TOOLS_FLAGS_TO_PASS_NATIVE) common-tools
++	  $(TOOLS_FLAGS_TO_PASS_NATIVE) common-tools $(EXTRA_GNATTOOLS)
+ 
+ # gnatmake/link can be built with recent gnatmake/link if they are available.
+ # This is especially convenient for building cross tools or for rebuilding
+@@ -216,7 +216,7 @@ regnattools: $(GCC_DIR)/stamp-gnatlib-rts
+ 	  gnatmake-re gnatlink-re
+ 	# gnattools2
+ 	$(MAKE) -C $(GCC_DIR)/ada/tools -f ../Makefile \
+-	  $(TOOLS_FLAGS_TO_PASS_NATIVE) common-tools
++	  $(TOOLS_FLAGS_TO_PASS_NATIVE) common-tools $(EXTRA_GNATTOOLS)
+ 
+ gnattools-cross: $(GCC_DIR)/stamp-tools
+ 	# gnattools1-re
+-- 
+2.51.0.windows.1
+
