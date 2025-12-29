@@ -1,0 +1,372 @@
+From 3800c4c6b0a242bbc252dacdeb3ba50ec5889ddd Mon Sep 17 00:00:00 2001
+From: Yonggang Luo <luoyonggang@gmail.com>
+Date: Mon, 29 Dec 2025 20:26:46 +0800
+Subject: [PATCH 19/21] configure msys2
+
+---
+ gcc/configure           | 4 ++--
+ gcc/jit/Make-lang.in    | 2 +-
+ libatomic/configure     | 2 +-
+ libbacktrace/configure  | 2 +-
+ libcc1/configure        | 4 ++--
+ libgfortran/configure   | 4 ++--
+ libgm2/configure        | 4 ++--
+ libgo/config/libtool.m4 | 2 +-
+ libgo/configure         | 2 +-
+ libgomp/configure       | 4 ++--
+ libitm/configure        | 4 ++--
+ libobjc/configure       | 2 +-
+ libphobos/configure     | 2 +-
+ libquadmath/configure   | 2 +-
+ libsanitizer/configure  | 4 ++--
+ libssp/configure        | 2 +-
+ libstdc++-v3/configure  | 4 ++--
+ libtool.m4              | 2 +-
+ libvtv/configure        | 4 ++--
+ zlib/configure          | 2 +-
+ 20 files changed, 29 insertions(+), 29 deletions(-)
+
+diff --git a/gcc/configure b/gcc/configure
+index 16965953f05..7ce21aac5ba 100755
+--- a/gcc/configure
++++ b/gcc/configure
+@@ -20599,7 +20599,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+@@ -24327,7 +24327,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       ;;
+     mingw* | cegcc*)
+diff --git a/gcc/jit/Make-lang.in b/gcc/jit/Make-lang.in
+index 52c24c35741..53223022485 100644
+--- a/gcc/jit/Make-lang.in
++++ b/gcc/jit/Make-lang.in
+@@ -46,7 +46,7 @@ LIBGCCJIT_RELEASE_NUM = 1
+ 
+ SHARED_PFX=lib
+ ifneq (,$(filter %cygwin,$(target)))
+-SHARED_PFX=cyg
++SHARED_PFX=msys-
+ endif
+ 
+ ifneq (,$(filter %-mingw% %-cygwin,$(target)))
+diff --git a/libatomic/configure b/libatomic/configure
+index d579bab96f8..4dba051aba4 100755
+--- a/libatomic/configure
++++ b/libatomic/configure
+@@ -10535,7 +10535,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+diff --git a/libbacktrace/configure b/libbacktrace/configure
+index 85be043009a..55355cb24a0 100755
+--- a/libbacktrace/configure
++++ b/libbacktrace/configure
+@@ -10715,7 +10715,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+diff --git a/libcc1/configure b/libcc1/configure
+index ea689a353c8..38ef31723f4 100755
+--- a/libcc1/configure
++++ b/libcc1/configure
+@@ -9969,7 +9969,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+@@ -14103,7 +14103,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       ;;
+     mingw* | cegcc*)
+diff --git a/libgfortran/configure b/libgfortran/configure
+index 9898a94a372..5f09fb442d0 100755
+--- a/libgfortran/configure
++++ b/libgfortran/configure
+@@ -11908,7 +11908,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+@@ -15754,7 +15754,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       ;;
+     mingw* | cegcc*)
+diff --git a/libgm2/configure b/libgm2/configure
+index 8ffdb311625..21507d3f292 100755
+--- a/libgm2/configure
++++ b/libgm2/configure
+@@ -13915,7 +13915,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+@@ -17667,7 +17667,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       ;;
+     mingw* | cegcc*)
+diff --git a/libgo/config/libtool.m4 b/libgo/config/libtool.m4
+index 4ca90ee71bc..c38c60351b5 100644
+--- a/libgo/config/libtool.m4
++++ b/libgo/config/libtool.m4
+@@ -2236,7 +2236,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[[.]]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[[.]]/-/g'`${versuffix}${shared_ext}'
+ m4_if([$1], [],[
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"])
+       ;;
+diff --git a/libgo/configure b/libgo/configure
+index b1a2228fa1b..d0a0efe0623 100755
+--- a/libgo/configure
++++ b/libgo/configure
+@@ -10650,7 +10650,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+diff --git a/libgomp/configure b/libgomp/configure
+index df1fc8df30e..1f2c926dc02 100755
+--- a/libgomp/configure
++++ b/libgomp/configure
+@@ -10548,7 +10548,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+@@ -14264,7 +14264,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       ;;
+     mingw* | cegcc*)
+diff --git a/libitm/configure b/libitm/configure
+index 9ba7fb03a57..6449e66b375 100755
+--- a/libitm/configure
++++ b/libitm/configure
+@@ -11210,7 +11210,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+@@ -14938,7 +14938,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       ;;
+     mingw* | cegcc*)
+diff --git a/libobjc/configure b/libobjc/configure
+index 68172549137..41bafd2b359 100755
+--- a/libobjc/configure
++++ b/libobjc/configure
+@@ -9937,7 +9937,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+diff --git a/libphobos/configure b/libphobos/configure
+index 4f5be7d4ff4..b3fb57c7c1b 100755
+--- a/libphobos/configure
++++ b/libphobos/configure
+@@ -10943,7 +10943,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+diff --git a/libquadmath/configure b/libquadmath/configure
+index f82dd3d0d6d..3aeba3c598a 100755
+--- a/libquadmath/configure
++++ b/libquadmath/configure
+@@ -9983,7 +9983,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+diff --git a/libsanitizer/configure b/libsanitizer/configure
+index 6bfd28916d2..6a129b587cc 100755
+--- a/libsanitizer/configure
++++ b/libsanitizer/configure
+@@ -11554,7 +11554,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+@@ -15282,7 +15282,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       ;;
+     mingw* | cegcc*)
+diff --git a/libssp/configure b/libssp/configure
+index 0052e03650d..9b8d24c7ae0 100755
+--- a/libssp/configure
++++ b/libssp/configure
+@@ -10225,7 +10225,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+diff --git a/libstdc++-v3/configure b/libstdc++-v3/configure
+index 1b4f930ba2f..f6f275d11b5 100755
+--- a/libstdc++-v3/configure
++++ b/libstdc++-v3/configure
+@@ -11342,7 +11342,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+@@ -15094,7 +15094,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       ;;
+     mingw* | cegcc*)
+diff --git a/libtool.m4 b/libtool.m4
+index add2d4a1e23..50b64b80545 100644
+--- a/libtool.m4
++++ b/libtool.m4
+@@ -2310,7 +2310,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[[.]]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[[.]]/-/g'`${versuffix}${shared_ext}'
+ m4_if([$1], [],[
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"])
+       ;;
+diff --git a/libvtv/configure b/libvtv/configure
+index a7889161c50..860ef9b6999 100755
+--- a/libvtv/configure
++++ b/libvtv/configure
+@@ -11448,7 +11448,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+@@ -15176,7 +15176,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       ;;
+     mingw* | cegcc*)
+diff --git a/zlib/configure b/zlib/configure
+index 92c462d04c6..c82e3383572 100755
+--- a/zlib/configure
++++ b/zlib/configure
+@@ -9915,7 +9915,7 @@ cygwin* | mingw* | pw32* | cegcc*)
+     case $host_os in
+     cygwin*)
+       # Cygwin DLLs use 'cyg' prefix rather than 'lib'
+-      soname_spec='`echo ${libname} | sed -e 's/^lib/cyg/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
++      soname_spec='`echo ${libname} | sed -e 's/^lib/msys-/'``echo ${release} | $SED -e 's/[.]/-/g'`${versuffix}${shared_ext}'
+ 
+       sys_lib_search_path_spec="$sys_lib_search_path_spec /usr/lib/w32api"
+       ;;
+-- 
+2.51.0.windows.1
+
