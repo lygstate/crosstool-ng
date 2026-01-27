@@ -1,0 +1,24 @@
+From b029789049b5eb0afccdbe12fddb7b9a68b00a51 Mon Sep 17 00:00:00 2001
+From: Yonggang Luo <luoyonggang@gmail.com>
+Date: Wed, 28 Jan 2026 01:25:51 +0800
+Subject: [PATCH 3/3] cflags-private
+
+---
+ misc/gen-pkgconfig.in | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/misc/gen-pkgconfig.in b/misc/gen-pkgconfig.in
+index abca88fe..2455e57f 100644
+--- a/misc/gen-pkgconfig.in
++++ b/misc/gen-pkgconfig.in
+@@ -245,6 +245,7 @@ Requires.private: $reqs
+ Libs: $lib_flags $LIBS
+ Libs.private: @LIBS@ $main_libs
+ Cflags: $CFLAGS
++Cflags.private: -DNCURSES_STATIC
+ EOF
+ 
+ done
+-- 
+2.52.0.windows.1
+
