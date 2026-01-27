@@ -184,7 +184,6 @@ config CC_GCC_USE_GRAPHITE
 config CC_GCC_USE_LTO
     bool "Enable LTO"
     default y
-    select ZLIB_NEEDED
     help
       Enable the Link Time Optimisations.
 

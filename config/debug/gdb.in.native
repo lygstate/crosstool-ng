@@ -8,8 +8,6 @@ config GDB_NATIVE
     select LIBC_UCLIBC_WCHAR if LIBC_UCLIBC_NG
     select LIBC_UCLIBC_IPV6 if LIBC_UCLIBC_NG && GDB_8_3_or_later
     select LIBC_UCLIBC_LIBICONV if LIBC_UCLIBC_NG && GDB_15_or_later
-    select EXPAT_TARGET
-    select NCURSES_TARGET
     select GMP_TARGET if GDB_11_or_later
     select MPFR_TARGET if GDB_13_or_later
     help
