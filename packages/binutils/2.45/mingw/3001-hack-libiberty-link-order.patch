@@ -1,0 +1,27 @@
+From 12edf78954567af938f11c271e699093e2ff6772 Mon Sep 17 00:00:00 2001
+From: Yonggang Luo <luoyonggang@gmail.com>
+Date: Wed, 28 Jan 2026 00:58:04 +0800
+Subject: [PATCH] hack libiberty link order
+
+---
+ ld/Makefile.in | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/ld/Makefile.in b/ld/Makefile.in
+index 3e24bd4deb2..79b4f672d95 100644
+--- a/ld/Makefile.in
++++ b/ld/Makefile.in
+@@ -1036,8 +1036,8 @@ ld_new_SOURCES = ldgram.y ldlex-wrapper.c lexsup.c ldlang.c mri.c ldctor.c ldmai
+ ld_new_DEPENDENCIES = $(EMULATION_OFILES) $(EMUL_EXTRA_OFILES) \
+ 		      $(BFDLIB) $(LIBCTF) $(LIBIBERTY) $(LIBINTL_DEP)
+ 
+-ld_new_LDADD = $(EMULATION_OFILES) $(EMUL_EXTRA_OFILES) $(BFDLIB) $(LIBCTF) \
+-	       $(LIBIBERTY) $(LIBINTL) $(ZLIB) $(ZSTD_LIBS) $(JANSSON_LIBS)
++ld_new_LDADD = $(EMULATION_OFILES) $(EMUL_EXTRA_OFILES) $(LIBIBERTY) $(BFDLIB) $(LIBCTF) \
++	       $(LIBINTL) $(ZLIB) $(ZSTD_LIBS) $(JANSSON_LIBS)
+ 
+ #
+ #
+-- 
+2.52.0.windows.1
+

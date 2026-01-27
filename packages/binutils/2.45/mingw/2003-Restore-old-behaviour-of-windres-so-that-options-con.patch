@@ -1,0 +1,81 @@
+From f8d747e61f5983fe30514e6fc397a8785e24f6f5 Mon Sep 17 00:00:00 2001
+From: Yonggang Luo <luoyonggang@gmail.com>
+Date: Wed, 28 Jan 2026 00:41:34 +0800
+Subject: [PATCH 1/2] Restore old behaviour of windres so that options con
+
+---
+ binutils/doc/binutils.texi |  7 ++++---
+ binutils/windres.c         | 26 +++++++++++++++++++++++++-
+ 2 files changed, 29 insertions(+), 4 deletions(-)
+
+diff --git a/binutils/doc/binutils.texi b/binutils/doc/binutils.texi
+index 4543341e00c..075f7366381 100644
+--- a/binutils/doc/binutils.texi
++++ b/binutils/doc/binutils.texi
+@@ -4518,7 +4518,8 @@ format, which is the first one listed by the @option{--help} option.
+ @item --preprocessor @var{program}
+ When @command{windres} reads an @code{rc} file, it runs it through the C
+ preprocessor first.  This option may be used to specify the preprocessor
+-to use.  The default preprocessor is @code{gcc}.
++to use, including any leading arguments.  The default preprocessor
++argument is @code{gcc}.
+ 
+ @item --preprocessor-arg @var{option}
+ When @command{windres} reads an @code{rc} file, it runs it through
+@@ -4529,8 +4530,8 @@ preprocessor command line.
+ If the @option{--preprocessor} option has not been specified then a
+ default set of preprocessor arguments will be used, with any
+ @option{--preprocessor-arg} options being placed after them on the
+-command line.  These default arguments are @code{-E},
+-@code{-xc-header} and @code{-DRC_INVOKED}.
++command line.  These default arguments are @code{-E -xc-header
++-DRC_INVOKED}.
+ 
+ @item -I @var{directory}
+ @itemx --include-dir @var{directory}
+diff --git a/binutils/windres.c b/binutils/windres.c
+index cfd306bd787..2fdba4ec4b2 100644
+--- a/binutils/windres.c
++++ b/binutils/windres.c
+@@ -690,13 +690,37 @@ quot (const char *string)
+       buf = (char *) xmalloc (buflen);
+     }
+ 
++#if defined (_WIN32) && !defined (__CYGWIN__)
++  /* For Windows shells, quote "like this".   */
++  {
++    bool quoted = false;
++
++    dest = buf;
++    if (strchr (string, ' '))
++      {
++	quoted = true;
++	*dest++ = '"';
++      }
++
++    for (src = string; *src; src++, dest++)
++      {
++	/* Escape-protect embedded double quotes.  */
++	if (quoted && *src == '"')
++	  *dest++ = '\\';
++	*dest = *src;
++      }
++
++    if (quoted)
++      *dest++ = '"';
++  }
++#else
+   for (src = string, dest = buf; *src; src++, dest++)
+     {
+       if (*src == '(' || *src == ')' || *src == ' ')
+ 	*dest++ = '\\';
+       *dest = *src;
+     }
+-
++#endif
+   *dest = 0;
+   return buf;
+ }
+-- 
+2.52.0.windows.1
+

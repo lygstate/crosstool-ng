@@ -1,0 +1,24 @@
+From e79673392209ed9e6684bfac8f4cdf2b383e839c Mon Sep 17 00:00:00 2001
+From: Yonggang Luo <luoyonggang@gmail.com>
+Date: Wed, 28 Jan 2026 00:42:27 +0800
+Subject: [PATCH 2/2] reproducible import libraries
+
+---
+ ld/pe-dll.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/ld/pe-dll.c b/ld/pe-dll.c
+index 9a8bbfae471..075f8031cd0 100644
+--- a/ld/pe-dll.c
++++ b/ld/pe-dll.c
+@@ -2940,6 +2940,7 @@ pe_dll_generate_implib (def_file *def, const char *impfilename, struct bfd_link_
+ 
+   bfd_set_format (outarch, bfd_archive);
+   outarch->has_armap = 1;
++  outarch->flags |= BFD_DETERMINISTIC_OUTPUT;
+ 
+   /* Work out a reasonable size of things to put onto one line.  */
+   ar_head = make_head (outarch);
+-- 
+2.52.0.windows.1
+
