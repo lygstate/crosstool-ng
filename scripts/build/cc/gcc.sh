@@ -796,15 +796,23 @@ do_gcc_core_backend() {
     cc_gcc_multilib_housekeeping cc="${prefix}/bin/${CT_TARGET}-${CT_CC}" \
         host="${host}"
 
+    liblto_plugin="liblto_plugin"
+    if [ "${CT_SYS_OS}" = "Cygwin" ]; then
+        liblto_plugin="cyglto_plugin"
+    fi
+
     # If binutils want the LTO plugin, point them to it
     if [ -d "${CT_PREFIX_DIR}/lib/bfd-plugins" -a "${build_step}" = "gcc_host" ]; then
         local gcc_version=$(cat "${CT_SRC_DIR}/gcc/gcc/BASE-VER" )
         local plugins_dir="libexec/gcc/${CT_TARGET}/${gcc_version}"
-        file="$( ls -1 "${CT_PREFIX_DIR}/${plugins_dir}/liblto_plugin."* 2>/dev/null | \
+        file="$( ls -1 "${CT_PREFIX_DIR}/${plugins_dir}/${liblto_plugin}."* 2>/dev/null | \
             sort | head -n1 || true )"
         [ -z "${file}" ] && ext="" || ext=".${file##*.}"
-        CT_DoExecLog ALL ln -sfv "../../${plugins_dir}/liblto_plugin${ext}" \
-                "${CT_PREFIX_DIR}/lib/bfd-plugins/liblto_plugin${ext}"
+
+        pushd "${CT_PREFIX_DIR}/lib/bfd-plugins"
+        CT_DoExecLog ALL ln -sfv "../../${plugins_dir}/${liblto_plugin}${ext}" \
+                "${liblto_plugin}${ext}"
+        popd
     fi
 }
 
@@ -1379,14 +1387,19 @@ do_gcc_backend() {
     cc_gcc_multilib_housekeeping cc="${prefix}/bin/${CT_TARGET}-${CT_CC}" \
         host="${host}"
 
+    liblto_plugin="liblto_plugin"
+
     # If binutils want the LTO plugin, point them to it
     if [ -d "${CT_PREFIX_DIR}/lib/bfd-plugins" -a "${build_step}" = "gcc_host" ]; then
         local gcc_version=$(cat "${CT_SRC_DIR}/gcc/gcc/BASE-VER" )
         local plugins_dir="libexec/gcc/${CT_TARGET}/${gcc_version}"
-        file="$( ls -1 "${CT_PREFIX_DIR}/${plugins_dir}/liblto_plugin."* 2>/dev/null | \
+        file="$( ls -1 "${CT_PREFIX_DIR}/${plugins_dir}/${liblto_plugin}."* 2>/dev/null | \
             sort | head -n1 || true )"
         [ -z "${file}" ] && ext="" || ext=".${file##*.}"
-        CT_DoExecLog ALL ln -sfv "../../${plugins_dir}/liblto_plugin${ext}" \
-                "${CT_PREFIX_DIR}/lib/bfd-plugins/liblto_plugin${ext}"
+
+        pushd "${CT_PREFIX_DIR}/lib/bfd-plugins"
+        CT_DoExecLog ALL ln -sfv "../../${plugins_dir}/${liblto_plugin}${ext}" \
+                "${liblto_plugin}${ext}"
+        popd
     fi
 }
